@@ -4,14 +4,17 @@ A custom AWS CDK construct that integrates node for building react projects, aut
 
 ## Features
 
-TODO
+- Automates the build process of React applications using `npm`.
+- Deploys the built React application to an AWS S3 bucket for hosting.
+- Handles dependency resolution and packaging with `npm ci` and `npm run build`.
+- Easily integrates with AWS CDK projects, providing a seamless deployment workflow.
 
 
 ## Prerequisites
 
 - [Python 3.x](https://www.python.org/downloads/)
 - [AWS CDK](https://github.com/aws/aws-cdk)
-- [Node.JS](https://nodejs.org/en)
+- [Node.js](https://nodejs.org/en)
 
 ## Installation
 
@@ -22,11 +25,39 @@ pip install cdk-react-bucket-deployment
 ```
 
 ## Usage
-TODO
+Here's a basic example of how to use ReactBucketDeployment in your AWS CDK stack:
+
+```python
+from aws_cdk import Stack
+from aws_cdk.aws_s3 import Bucket
+from constructs import Construct
+from react_bucket_deployment import ReactBucketDeployment
+
+class MyReactAppStack(Stack):
+    def __init__(self, scope: Construct, id: str, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        bucket = Bucket(self, "MyReactAppBucket")
+
+        ReactBucketDeployment(
+            self, "DeployReactApp",
+            react_project_path="./path/to/react/project",
+            destination_bucket=bucket
+        )
+```
+
+Replace ./path/to/react/project with the path to your React project directory.
 
 ## Configuration
 
-TODO
+The ReactBucketDeployment construct accepts the following parameters:
+
+- `scope`: The scope in which to define this construct (usually self in the context of a stack).
+- `id`: The scoped construct ID.
+- `react_project_path`: The file system path to the React project directory.
+- `destination_bucket`: The S3 bucket instance where the React application will be deployed.
+
+Additional AWS CDK BucketDeployment options can be passed through **kwargs to customize the deployment behavior further.
 
 
 ## Local Development
