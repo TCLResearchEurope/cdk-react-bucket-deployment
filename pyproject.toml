@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cdk-react-bucket-deployment"
-version = "0.1.0"
+version = "0.1.1"
 description = "A custom AWS CDK construct that integrates node for building react projects and deploying them to AWS S3."
 authors = ["TCL Research Europe <tcl.research.eu@gmail.com>"]
 license = "MIT"

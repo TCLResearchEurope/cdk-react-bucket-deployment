@@ -75,7 +75,4 @@ class ReactBucketDeployment(BucketDeployment):
     @staticmethod
     def _build_react_project(project_path: Path) -> None:
         subprocess.run(["npm", "ci"], check=True, cwd=project_path)
-        npm_ci_result = subprocess.run(
-            ["npm", "run", "build"], cwd=project_path, capture_output=True
-        )
-        print(npm_ci_result)
+        subprocess.run(["npm", "run", "build"], check=True, cwd=project_path)
